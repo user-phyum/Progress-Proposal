@@ -126,7 +126,7 @@
                     </button>
 
                     <!-- Spreadsheet Direct Link -->
-                    <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ284QWDamuR-kyXe68xwcCKyGCk4Sk4tMBPXwKQZafS_u0gnurSthiiB2V5gw4z4R-0TtdTfMO4le6/pubhtml?gid=0&single=true" 
+                    <a href="https://docs.google.com/spreadsheets/d/1g2tF-B-sjPXc4Ay7J_UiRX6TjaxwtR1OdjUDWn0gs0k/edit?usp=sharing" 
                        target="_blank" 
                        rel="noopener noreferrer" 
                        class="inline-flex items-center text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-3.5 py-2 rounded-lg shadow-sm transition-all duration-150 hover:shadow">
@@ -351,7 +351,7 @@
             <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50">
                 <div class="flex items-center space-x-3">
                     <span id="modal-category-badge" class="px-2.5 py-0.5 text-[11px] font-bold rounded-full bg-blue-100 text-blue-700 border border-blue-200 uppercase tracking-wide">
-                        Kategori
+                        KBK: -
                     </span>
                     <span id="modal-timestamp" class="text-xs text-slate-500">
                         -
@@ -433,7 +433,7 @@
                 <span>&copy; 2026 Metodologi Penelitian Fisika Berbasis Lingkungan - Universitas Negeri Malang</span>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ284QWDamuR-kyXe68xwcCKyGCk4Sk4tMBPXwKQZafS_u0gnurSthiiB2V5gw4z4R-0TtdTfMO4le6/pubhtml?gid=0&single=true" target="_blank" class="hover:text-blue-600 hover:underline">
+                <a href="https://docs.google.com/spreadsheets/d/1g2tF-B-sjPXc4Ay7J_UiRX6TjaxwtR1OdjUDWn0gs0k/edit?usp=sharing" target="_blank" class="hover:text-blue-600 hover:underline">
                     <i class="fa-solid fa-table mr-1"></i> Sumber Data Spreadsheet
                 </a>
             </div>
@@ -526,8 +526,9 @@
                 let name = getRowFieldValue(row, keys, ['nama', 'mahasiswa', 'pembawa', 'presenter']) || (keys[1] ? row[keys[1]] : '');
                 let nim = getRowFieldValue(row, keys, ['nim', 'nomor induk', 'id']) || (keys[2] ? row[keys[2]] : '');
                 let title = getRowFieldValue(row, keys, ['judul', 'proposal', 'topik', 'tema']) || (keys[3] ? row[keys[3]] : '');
-                let category = getRowFieldValue(row, keys, ['kategori', 'sub-topik', 'subtopik', 'bidang', 'pembimbing']) || (keys[4] ? row[keys[4]] : '');
-                let notes = getRowFieldValue(row, keys, ['catatan', 'ringkasan', 'abstrak', 'keterangan', 'deskripsi']) || (keys[6] ? row[keys[6]] : '');
+                let category = getRowFieldValue(row, keys, ['kbk', 'kategori', 'sub-topik', 'subtopik', 'bidang']) || (keys[4] ? row[keys[4]] : '');
+                let supervisor = getRowFieldValue(row, keys, ['pembimbing', 'dosen', 'supervisor', 'penguji']) || (keys[6] ? row[keys[6]] : '');
+                let notes = getRowFieldValue(row, keys, ['catatan', 'ringkasan', 'abstrak', 'keterangan', 'deskripsi']) || (keys[7] ? row[keys[7]] : '');
 
                 // Ignore completely empty rows
                 if (!name && !title && !videoUrl) return;
@@ -536,6 +537,7 @@
                 if (!name) name = `Mahasiswa ${index + 1}`;
                 if (!title) title = `Proposal Penelitian Fisika Lingkungan #${index + 1}`;
                 if (!category) category = 'Fisika Lingkungan';
+                if (!supervisor) supervisor = '-';
                 if (!timestamp) timestamp = new Date().toLocaleDateString('id-ID');
 
                 parsedItems.push({
@@ -546,7 +548,8 @@
                     title: title.trim(),
                     videoUrl: videoUrl ? videoUrl.trim() : '',
                     category: category.trim(),
-                    notes: notes ? notes.trim() : 'Proposal penelitian metodologi fisika berbasis lingkungan.'
+                    supervisor: supervisor.trim(),
+                    notes: notes ? notes.trim() : ''
                 });
             });
 
@@ -760,11 +763,11 @@
                                 </div>
                             </div>
                             <div class="absolute top-3 left-3 flex items-center space-x-1.5">
-                                <span class="bg-slate-900/80 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-md border border-white/20 uppercase tracking-wide">
-                                    ${escapeHtml(item.category)}
+                                <span class="bg-slate-900/85 backdrop-blur-md text-amber-300 text-[10px] font-bold px-2.5 py-1 rounded-md border border-amber-400/30 tracking-wide uppercase shadow-sm">
+                                    <i class="fa-solid fa-layer-group mr-1 text-amber-400"></i>KBK: ${escapeHtml(item.category)}
                                 </span>
                                 ${videoMeta.type === 'gdrive' ? `
-                                    <span class="bg-emerald-600/90 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded-md flex items-center">
+                                    <span class="bg-emerald-600/90 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded-md flex items-center shadow-sm">
                                         <i class="fa-brands fa-google-drive mr-1"></i> Drive
                                     </span>
                                 ` : ''}
@@ -774,12 +777,17 @@
                         <!-- Card Body -->
                         <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
                             <div class="space-y-2">
+                                <div class="inline-flex items-center space-x-1.5 text-[11px] font-bold text-blue-800 bg-blue-50/80 px-2.5 py-1 rounded-md border border-blue-200/60">
+                                    <i class="fa-solid fa-bookmark text-amber-500 text-[10px]"></i>
+                                    <span>KBK: ${escapeHtml(item.category)}</span>
+                                </div>
                                 <h3 class="font-bold text-slate-900 text-sm sm:text-base leading-snug line-clamp-2 hover:text-blue-600 transition cursor-pointer" onclick="openVideoModal(${item.id})">
                                     ${escapeHtml(item.title)}
                                 </h3>
-                                <p class="text-xs text-slate-500 line-clamp-2">
-                                    ${escapeHtml(item.notes)}
-                                </p>
+                                <div class="flex items-center text-xs text-slate-600 bg-slate-50 border border-slate-200/80 rounded-lg p-2.5 space-x-2">
+                                    <i class="fa-solid fa-user-tie text-blue-600 text-sm flex-shrink-0"></i>
+                                    <span class="truncate"><strong class="text-slate-800">Pembimbing:</strong> ${escapeHtml(item.supervisor)}</span>
+                                </div>
                             </div>
 
                             <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
@@ -846,9 +854,9 @@
             document.getElementById('modal-title').innerText = item.title;
             document.getElementById('modal-author').innerText = item.name;
             document.getElementById('modal-nim').innerText = `NIM: ${item.nim}`;
-            document.getElementById('modal-category-badge').innerText = item.category;
+            document.getElementById('modal-category-badge').innerText = `KBK: ${item.category}`;
             document.getElementById('modal-timestamp').innerText = `Diinput: ${item.timestamp}`;
-            document.getElementById('modal-notes').innerText = item.notes || 'Tidak ada catatan khusus.';
+            document.getElementById('modal-notes').innerText = `Dosen Pembimbing: ${item.supervisor}` + (item.notes ? `\n\nCatatan: ${item.notes}` : '');
 
             const container = document.getElementById('modal-player-container');
 
@@ -896,10 +904,10 @@
             const topicSelect = document.getElementById('filter-topic');
             const categories = [...new Set(rawPresentationData.map(item => item.category))].filter(Boolean);
 
-            let optionsHtml = `<option value="ALL">Semua Kategori / Topik (${rawPresentationData.length})</option>`;
+            let optionsHtml = `<option value="ALL">Semua KBK / Topik (${rawPresentationData.length})</option>`;
             categories.forEach(cat => {
                 const count = rawPresentationData.filter(i => i.category === cat).length;
-                optionsHtml += `<option value="${escapeHtml(cat)}">${escapeHtml(cat)} (${count})</option>`;
+                optionsHtml += `<option value="${escapeHtml(cat)}">KBK: ${escapeHtml(cat)} (${count})</option>`;
             });
 
             topicSelect.innerHTML = optionsHtml;
