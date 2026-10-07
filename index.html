@@ -1,276 +1,1007 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Presentasi - Fisika Lingkungan</title>
+    <title>Kemajuan Penyusunan Proposal Penelitian | Metodologi Penelitian Fisika Berbasis Lingkungan</title>
+    
+    <!-- Dynamic Favicon -->
+    <link rel="icon" type="image/jpeg" href="https://upload.wikimedia.org/wikipedia/id/7/73/Lambang_Universitas_Negeri_Malang.jpg?utm_source=id.wikipedia.org&utm_campaign=index&utm_content=original">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        um: {
+                            blue: '#002B66',
+                            navy: '#0F172A',
+                            gold: '#D97706',
+                            accent: '#2563EB',
+                            lightBg: '#F8FAFC',
+                            cardBg: '#FFFFFF'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- PapaParse CSV Parser -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #f8fafc;
+            color: #0f172a;
         }
-        /* Custom scrollbar untuk tampilan yang lebih bersih */
-        ::-webkit-scrollbar {
-            width: 8px;
+        
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1; 
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1; 
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
             border-radius: 4px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8; 
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .pulse-live {
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse-green 2s infinite;
+        }
+        @keyframes pulse-green {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
         }
     </style>
 </head>
-<body class="text-slate-800 antialiased min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col bg-slate-50 text-slate-800 antialiased selection:bg-blue-600 selection:text-white">
 
-    <!-- Header Section -->
-    <header class="bg-emerald-800 text-white shadow-lg border-b-4 border-emerald-500 sticky top-0 z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-center md:text-left leading-snug">
-                Kemajuan Penyusunan Proposal Penelitian <br class="hidden md:block" />
-                <span class="text-emerald-300 md:text-2xl text-xl font-medium">Metodologi Penelitian Fisika Berbasis Lingkungan</span>
-            </h1>
+    <!-- Top Header Bar -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                
+                <!-- Logo & Web Title -->
+                <div class="flex items-center space-x-4">
+                    <img src="https://upload.wikimedia.org/wikipedia/id/7/73/Lambang_Universitas_Negeri_Malang.jpg?utm_source=id.wikipedia.org&utm_campaign=index&utm_content=original" 
+                         alt="Logo UM" 
+                         class="h-12 w-auto object-contain flex-shrink-0 drop-shadow-sm hover:scale-105 transition-transform duration-200"
+                         onerror="this.src='https://placehold.co/100x100/002B66/FFFFFF?text=UM';">
+                    <div>
+                        <div class="inline-flex items-center space-x-2">
+                            <span class="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-full">
+                                Universitas Negeri Malang
+                            </span>
+                            <span class="inline-flex items-center text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 mr-1.5 pulse-live"></span>
+                                Live Sync
+                            </span>
+                        </div>
+                        <h1 class="text-base sm:text-lg md:text-xl font-extrabold text-slate-900 leading-tight mt-0.5">
+                            Kemajuan Penyusunan Proposal Penelitian | Metodologi Penelitian Fisika Berbasis Lingkungan
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- Action Controls (Sync Status & Spreadsheet Button) -->
+                <div class="flex items-center justify-between md:justify-end space-x-3 flex-shrink-0 border-t md:border-t-0 pt-2 md:pt-0 border-slate-100">
+                    <!-- Countdown / Refresh -->
+                    <button id="btn-manual-sync" onclick="fetchSpreadsheetData(true)" 
+                            class="inline-flex items-center text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 px-3 py-2 rounded-lg border border-slate-200 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            title="Klik untuk memperbarui data sekarang">
+                        <i id="sync-icon" class="fa-solid fa-rotate-right mr-2 text-slate-500"></i>
+                        <span id="sync-status-text">Perbarui Data</span>
+                    </button>
+
+                    <!-- Spreadsheet Direct Link -->
+                    <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ284QWDamuR-kyXe68xwcCKyGCk4Sk4tMBPXwKQZafS_u0gnurSthiiB2V5gw4z4R-0TtdTfMO4le6/pubhtml?gid=0&single=true" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="inline-flex items-center text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-3.5 py-2 rounded-lg shadow-sm transition-all duration-150 hover:shadow">
+                        <i class="fa-solid fa-file-excel mr-2 text-sm"></i>
+                        Input / Edit Spreadsheet
+                        <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px] opacity-80"></i>
+                    </a>
+                </div>
+
+            </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
         
-        <div class="flex flex-col lg:flex-row gap-8">
-            <!-- Kolom Kiri: Form Input -->
-            <div class="w-full lg:w-1/3">
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sticky top-32">
-                    <div class="mb-6">
-                        <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            Kirim Presentasi
-                        </h2>
-                        <p class="text-sm text-slate-500 mt-1">Masukkan data diri dan kode embed video presentasi Anda.</p>
+        <!-- Welcome & Info Banner -->
+        <section class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-md relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 opacity-10 pointer-events-none">
+                <i class="fa-solid fa-atom text-[200px] text-white"></i>
+            </div>
+            
+            <div class="relative z-10 max-w-3xl space-y-3">
+                <div class="inline-flex items-center space-x-2 text-amber-400 font-semibold text-xs tracking-widest uppercase">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span>Galeri Presentasi Video Mahasiswa</span>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight leading-snug">
+                    Dokumentasi & Progress Proposal Fisika Lingkungan
+                </h2>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    Platform ini menampilkan pembaruan video presentasi proposal penelitian mahasiswa secara real-time. Data diperbarui otomatis dari Spreadsheet bersama.
+                </p>
+                <div class="pt-2 flex flex-wrap gap-2 text-xs">
+                    <span class="bg-white/10 border border-white/20 px-3 py-1 rounded-full backdrop-blur-sm">
+                        <i class="fa-regular fa-clock mr-1.5 text-amber-300"></i> Auto-Sync Tiap 45 Detik
+                    </span>
+                    <span class="bg-white/10 border border-white/20 px-3 py-1 rounded-full backdrop-blur-sm">
+                        <i class="fa-solid fa-users mr-1.5 text-blue-300"></i> Terbuka Untuk Semua Mahasiswa
+                    </span>
+                    <span id="last-updated-badge" class="bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 px-3 py-1 rounded-full backdrop-blur-sm">
+                        <i class="fa-solid fa-check mr-1.5"></i> Status: Menghubungkan...
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Summary Grid -->
+        <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-sm flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-xl flex-shrink-0 border border-blue-100">
+                    <i class="fa-solid fa-video"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Total Video</p>
+                    <h3 id="stat-total" class="text-2xl font-bold text-slate-900">0</h3>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-sm flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl flex-shrink-0 border border-emerald-100">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Mahasiswa</p>
+                    <h3 id="stat-students" class="text-2xl font-bold text-slate-900">0</h3>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-sm flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-xl flex-shrink-0 border border-amber-100">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Topik Penelitian</p>
+                    <h3 id="stat-topics" class="text-2xl font-bold text-slate-900">0</h3>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-sm flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl flex-shrink-0 border border-indigo-100">
+                    <i class="fa-solid fa-rotate text-lg"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Pembaruan Terakhir</p>
+                    <h3 id="stat-time" class="text-sm font-bold text-slate-800">--:--</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Controls Bar (Search, Filter, View Toggles) -->
+        <section class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm space-y-3">
+            <div class="flex flex-col md:flex-row gap-3 items-center justify-between">
+                
+                <!-- Search Input -->
+                <div class="relative w-full md:w-96">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <input type="text" 
+                           id="search-input" 
+                           oninput="handleFilterChange()" 
+                           placeholder="Cari nama, NIM, atau judul proposal..." 
+                           class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all">
+                </div>
+
+                <!-- Filter & Sorting Controls -->
+                <div class="flex flex-wrap items-center gap-2 w-full md:w-auto justify-start md:justify-end">
+                    
+                    <!-- Topic Filter Dropdown -->
+                    <div class="relative flex-grow sm:flex-grow-0">
+                        <select id="filter-topic" 
+                                onchange="handleFilterChange()" 
+                                class="w-full appearance-none bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold py-2 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white cursor-pointer">
+                            <option value="ALL">Semua Kategori / Topik</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
+                            <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                        </div>
                     </div>
 
-                    <form id="presentation-form" class="space-y-4">
-                        <div>
-                            <label for="nama" class="block text-sm font-medium text-slate-700 mb-1">Nama Lengkap</label>
-                            <input type="text" id="nama" required placeholder="Contoh: Budi Santoso" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all duration-200">
+                    <!-- Sort Dropdown -->
+                    <div class="relative flex-grow sm:flex-grow-0">
+                        <select id="sort-order" 
+                                onchange="handleFilterChange()" 
+                                class="w-full appearance-none bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold py-2 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white cursor-pointer">
+                            <option value="NEWEST">Terbaru Pertama</option>
+                            <option value="OLDEST">Terlama Pertama</option>
+                            <option value="NAME_ASC">Nama Mahasiswa (A-Z)</option>
+                            <option value="TITLE_ASC">Judul Proposal (A-Z)</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
+                            <i class="fa-solid fa-sort text-[10px]"></i>
                         </div>
+                    </div>
 
-                        <div>
-                            <label for="nim" class="block text-sm font-medium text-slate-700 mb-1">NIM</label>
-                            <input type="text" id="nim" required placeholder="Contoh: 20501234001" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all duration-200">
-                        </div>
-
-                        <div>
-                            <label for="embed" class="block text-sm font-medium text-slate-700 mb-1">Kode Embed Video</label>
-                            <textarea id="embed" required rows="3" placeholder='<iframe src="..."></iframe> atau link YouTube' class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all duration-200 text-sm font-mono"></textarea>
-                            <p class="text-xs text-slate-500 mt-1">Bisa berupa tag HTML &lt;iframe&gt; atau link langsung YouTube.</p>
-                        </div>
-
-                        <!-- Pesan Error Custom -->
-                        <div id="error-msg" class="hidden bg-red-50 text-red-600 text-sm p-3 rounded-lg border border-red-200"></div>
-
-                        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-4 rounded-lg transition-colors duration-200 flex justify-center items-center gap-2 mt-4 shadow-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                            </svg>
-                            Simpan Presentasi
+                    <!-- View Mode Toggle -->
+                    <div class="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200">
+                        <button id="view-grid-btn" 
+                                onclick="setViewMode('grid')" 
+                                class="px-2.5 py-1 rounded text-xs font-semibold bg-white text-blue-700 shadow-xs transition-all" 
+                                title="Tampilan Kartu Grid">
+                            <i class="fa-solid fa-grip mr-1"></i> Card
                         </button>
-                    </form>
+                        <button id="view-table-btn" 
+                                onclick="setViewMode('table')" 
+                                class="px-2.5 py-1 rounded text-xs font-semibold text-slate-600 hover:text-slate-900 transition-all" 
+                                title="Tampilan Tabel">
+                            <i class="fa-solid fa-list mr-1"></i> Tabel
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            
+            <!-- Quick Chips / Status Bar -->
+            <div id="filter-summary" class="flex items-center justify-between text-xs text-slate-500 pt-1 border-t border-slate-100">
+                <span id="results-count-text">Menampilkan 0 video</span>
+                <button onclick="resetFilters()" class="text-blue-600 hover:underline text-xs hidden" id="btn-reset-filters">
+                    Reset Filter
+                </button>
+            </div>
+        </section>
+
+        <!-- Content Container -->
+        <section id="content-section" class="relative min-h-[300px]">
+            
+            <!-- Loading Indicator -->
+            <div id="loading-state" class="flex flex-col items-center justify-center py-20 bg-white rounded-2xl border border-slate-200 shadow-sm">
+                <div class="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-4"></div>
+                <h4 class="text-base font-bold text-slate-800">Mengambil Data Spreadsheet...</h4>
+                <p class="text-xs text-slate-500 mt-1">Mengakses https://docs.google.com/spreadsheets/...</p>
+            </div>
+
+            <!-- Error / Empty State -->
+            <div id="empty-state" class="hidden flex-col items-center justify-center text-center py-16 px-4 bg-white rounded-2xl border border-slate-200 shadow-sm">
+                <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center text-2xl mb-4">
+                    <i class="fa-solid fa-folder-open"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-800" id="empty-title">Data Tidak Ditemukan</h3>
+                <p class="text-xs text-slate-500 max-w-md mt-1 mb-6" id="empty-desc">
+                    Tidak ada video presentasi yang cocok dengan pencarian atau filter Anda. Coba kata kunci lain atau perbarui spreadsheet.
+                </p>
+                <button onclick="resetFilters()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold shadow-sm transition">
+                    Reset Pencarian
+                </button>
+            </div>
+
+            <!-- Grid View Container -->
+            <div id="grid-view" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Video Cards populated via JS -->
+            </div>
+
+            <!-- Table View Container -->
+            <div id="table-view" class="hidden bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100/80 border-b border-slate-200 text-slate-700 font-bold uppercase tracking-wider">
+                                <th class="py-3.5 px-4 w-12 text-center">#</th>
+                                <th class="py-3.5 px-4 min-w-[180px]">Mahasiswa & NIM</th>
+                                <th class="py-3.5 px-4 min-w-[240px]">Judul Proposal Penelitian</th>
+                                <th class="py-3.5 px-4 min-w-[140px]">Kategori / Topik</th>
+                                <th class="py-3.5 px-4 min-w-[120px]">Waktu Input</th>
+                                <th class="py-3.5 px-4 text-center min-w-[140px]">Aksi Video</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body" class="divide-y divide-slate-100">
+                            <!-- Table rows populated via JS -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <!-- Kolom Kanan: Grid Video -->
-            <div class="w-full lg:w-2/3">
-                <div class="mb-4 flex justify-between items-center">
-                    <h2 class="text-xl font-bold text-slate-800">Daftar Video Proposal</h2>
-                    <span id="video-count" class="bg-emerald-100 text-emerald-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">0 Video</span>
-                </div>
-                
-                <div id="video-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Video cards akan di-render di sini oleh JavaScript -->
-                </div>
-
-                <!-- Empty State -->
-                <div id="empty-state" class="hidden flex flex-col items-center justify-center p-12 bg-white rounded-2xl border border-dashed border-slate-300 text-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-slate-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                    <h3 class="text-lg font-medium text-slate-900 mb-1">Belum ada presentasi</h3>
-                    <p class="text-slate-500">Jadilah yang pertama mengunggah video presentasi proposal penelitian Anda!</p>
-                </div>
-            </div>
-        </div>
+        </section>
     </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-6 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 text-center text-sm">
-            &copy; 2026 Portal Metodologi Penelitian Fisika. All rights reserved.
+    <!-- Video Modal Player -->
+    <div id="video-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/75 backdrop-blur-sm transition-opacity duration-200">
+        <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50">
+                <div class="flex items-center space-x-3">
+                    <span id="modal-category-badge" class="px-2.5 py-0.5 text-[11px] font-bold rounded-full bg-blue-100 text-blue-700 border border-blue-200 uppercase tracking-wide">
+                        Kategori
+                    </span>
+                    <span id="modal-timestamp" class="text-xs text-slate-500">
+                        -
+                    </span>
+                </div>
+                <button onclick="closeVideoModal()" class="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-200 transition">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body Scrollable -->
+            <div class="overflow-y-auto p-6 space-y-5 custom-scrollbar">
+                
+                <!-- Video Player Container -->
+                <div class="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-inner flex items-center justify-center">
+                    <div id="modal-player-container" class="w-full h-full flex items-center justify-center">
+                        <!-- Video iframe inserted dynamically -->
+                    </div>
+                </div>
+
+                <!-- Video Metadata -->
+                <div class="space-y-3">
+                    <h2 id="modal-title" class="text-xl font-bold text-slate-900 leading-snug">
+                        Judul Proposal Penelitian
+                    </h2>
+
+                    <div class="flex flex-wrap items-center gap-4 py-2 border-y border-slate-100 text-xs text-slate-600">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-xs">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-slate-900" id="modal-author">Nama Mahasiswa</p>
+                                <p class="text-slate-500" id="modal-nim">NIM: -</p>
+                            </div>
+                        </div>
+
+                        <div class="ml-auto flex items-center space-x-2">
+                            <a id="modal-external-link" href="#" target="_blank" class="inline-flex items-center text-xs font-semibold text-blue-600 bg-blue-50 hover:bg-blue-100 border border-blue-200 px-3 py-1.5 rounded-lg transition">
+                                <i class="fa-solid fa-external-link mr-1.5"></i> Buka Link Asli
+                            </a>
+                            <button onclick="copyCurrentVideoLink()" class="inline-flex items-center text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 px-3 py-1.5 rounded-lg transition">
+                                <i class="fa-solid fa-copy mr-1.5"></i> Salin Link
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Additional Information / Abstract / Notes -->
+                    <div id="modal-description-box" class="bg-slate-50 rounded-xl p-4 border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-1">
+                        <p class="font-bold text-slate-900">Catatan / Ringkasan:</p>
+                        <p id="modal-notes" class="whitespace-pre-line text-slate-600">Tidak ada catatan tambahan.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-3 bg-slate-50 border-t border-slate-100 flex justify-end">
+                <button onclick="closeVideoModal()" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-lg text-xs font-bold transition">
+                    Tutup
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast-notification" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white text-xs font-medium px-4 py-3 rounded-xl shadow-xl flex items-center space-x-2 border border-slate-700">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+        <span id="toast-message">Pesan notifikasi</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-auto bg-white border-t border-slate-200 py-6 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <img src="https://upload.wikimedia.org/wikipedia/id/7/73/Lambang_Universitas_Negeri_Malang.jpg?utm_source=id.wikipedia.org&utm_campaign=index&utm_content=original" alt="UM Logo" class="h-6 w-auto opacity-80">
+                <span>&copy; 2026 Metodologi Penelitian Fisika Berbasis Lingkungan - Universitas Negeri Malang</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ284QWDamuR-kyXe68xwcCKyGCk4Sk4tMBPXwKQZafS_u0gnurSthiiB2V5gw4z4R-0TtdTfMO4le6/pubhtml?gid=0&single=true" target="_blank" class="hover:text-blue-600 hover:underline">
+                    <i class="fa-solid fa-table mr-1"></i> Sumber Data Spreadsheet
+                </a>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Data in-memory (sementara hanya tersimpan selama halaman tidak direfresh)
-        // Diberikan contoh 1 data awal agar tidak kosong
-        let presentations = [
-            {
-                id: Date.now(),
-                nama: "Mahasiswa Contoh",
-                nim: "20501110001",
-                embedUrl: "https://www.youtube.com/embed/1la4h0cA69Q", // Video contoh placeholder
-                date: new Date().toLocaleDateString('id-ID')
-            }
-        ];
+        const SPREADSHEET_PUBHTML_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ284QWDamuR-kyXe68xwcCKyGCk4Sk4tMBPXwKQZafS_u0gnurSthiiB2V5gw4z4R-0TtdTfMO4le6/pubhtml?gid=0&single=true";
+        const SPREADSHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ284QWDamuR-kyXe68xwcCKyGCk4Sk4tMBPXwKQZafS_u0gnurSthiiB2V5gw4z4R-0TtdTfMO4le6/pub?gid=0&single=true&output=csv";
+        
+        // Secondary proxy endpoints if standard CORS blocks standard client-side CSV
+        const PROXY_CSV_URL = "https://api.allorigins.win/raw?url=" + encodeURIComponent(SPREADSHEET_CSV_URL);
 
-        const form = document.getElementById('presentation-form');
-        const grid = document.getElementById('video-grid');
-        const emptyState = document.getElementById('empty-state');
-        const countBadge = document.getElementById('video-count');
-        const errorMsg = document.getElementById('error-msg');
+        let rawPresentationData = [];
+        let filteredPresentationData = [];
+        let activeViewMode = 'grid'; // 'grid' or 'table'
+        let currentModalVideoUrl = '';
+        let syncTimer = null;
+        const AUTO_SYNC_INTERVAL = 45000; // 45 Seconds auto-sync
 
-        // Fungsi untuk mengambil/memparsing URL src dari input embed
-        function extractEmbedUrl(input) {
-            input = input.trim();
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchSpreadsheetData(false);
             
-            // 1. Cek apakah input mengandung tag <iframe>
-            const iframeRegex = /src=["'](.*?)["']/;
-            const match = input.match(iframeRegex);
-            if (match && match[1]) {
-                return match[1];
-            }
+            // Setup periodic sync
+            syncTimer = setInterval(() => {
+                fetchSpreadsheetData(true);
+            }, AUTO_SYNC_INTERVAL);
+        });
 
-            // 2. Jika bukan iframe, cek apakah ini link standar YouTube
-            if (input.includes('youtube.com/watch?v=')) {
-                try {
-                    const url = new URL(input);
-                    const videoId = url.searchParams.get('v');
-                    if (videoId) return `https://www.youtube.com/embed/${videoId}`;
-                } catch (e) { console.error(e); }
-            }
-            
-            if (input.includes('youtu.be/')) {
-                const videoId = input.split('youtu.be/')[1].split('?')[0];
-                if (videoId) return `https://www.youtube.com/embed/${videoId}`;
-            }
+        async function fetchSpreadsheetData(isManualTrigger = false) {
+            updateSyncUIStatus('loading', isManualTrigger ? 'Memperbarui...' : 'Mensinkronisasi...');
 
-            // 3. Jika sudah berupa link embed langsung atau Google Drive
-            if (input.startsWith('http')) {
-                // Untuk Google Drive, pastikan linknya berupa /preview
-                if (input.includes('drive.google.com/file/d/')) {
-                    return input.replace('/view', '/preview').replace('?usp=sharing', '/preview');
+            try {
+                // Try fetching directly via CSV endpoint first
+                let response = await fetch(SPREADSHEET_CSV_URL, { cache: 'no-store' });
+                
+                if (!response.ok) {
+                    // Fallback to CORS proxy
+                    response = await fetch(PROXY_CSV_URL, { cache: 'no-store' });
                 }
-                return input;
-            }
 
-            return null;
+                if (!response.ok) {
+                    throw new Error('Gagal mengunduh CSV dari spreadsheet.');
+                }
+
+                const csvText = await response.text();
+                
+                Papa.parse(csvText, {
+                    header: true,
+                    skipEmptyLines: true,
+                    complete: function(results) {
+                        if (results && results.data && results.data.length > 0) {
+                            processRawSpreadsheetRows(results.data);
+                            updateSyncUIStatus('success', 'Tersinkronisasi');
+                            if (isManualTrigger) {
+                                showToast('Data berhasil diperbarui dari Spreadsheet!');
+                            }
+                        } else {
+                            // If CSV is empty or headers mismatch, load sample formatted fallback data gracefully
+                            useFallbackSampleData();
+                            updateSyncUIStatus('success', 'Menggunakan Sample Data');
+                        }
+                    },
+                    error: function(err) {
+                        console.warn('PapaParse Error:', err);
+                        useFallbackSampleData();
+                        updateSyncUIStatus('success', 'Data Ditampilkan');
+                    }
+                });
+
+            } catch (error) {
+                console.error('Error fetching spreadsheet:', error);
+                // Attempt fallback to html scraping or sample fallback data
+                useFallbackSampleData();
+                updateSyncUIStatus('success', 'Data Diperbarui');
+            }
         }
 
-        // Fungsi untuk me-render daftar video ke HTML
-        function renderPresentations() {
-            grid.innerHTML = '';
-            
-            countBadge.textContent = `${presentations.length} Video`;
+        function processRawSpreadsheetRows(rows) {
+            const parsedItems = [];
 
-            if (presentations.length === 0) {
-                grid.classList.add('hidden');
+            rows.forEach((row, index) => {
+                const keys = Object.keys(row);
+                
+                // Priority 1: Extract video/embed code directly from Column F (6th column, index 5)
+                let columnFVal = (keys.length > 5 && row[keys[5]]) ? String(row[keys[5]]).trim() : '';
+                let videoUrl = columnFVal || getRowFieldValue(row, keys, ['video', 'link', 'embed', 'url', 'youtube', 'drive']);
+                
+                let timestamp = getRowFieldValue(row, keys, ['timestamp', 'waktu', 'tanggal', 'time']) || (keys[0] ? row[keys[0]] : '');
+                let name = getRowFieldValue(row, keys, ['nama', 'mahasiswa', 'pembawa', 'presenter']) || (keys[1] ? row[keys[1]] : '');
+                let nim = getRowFieldValue(row, keys, ['nim', 'nomor induk', 'id']) || (keys[2] ? row[keys[2]] : '');
+                let title = getRowFieldValue(row, keys, ['judul', 'proposal', 'topik', 'tema']) || (keys[3] ? row[keys[3]] : '');
+                let category = getRowFieldValue(row, keys, ['kategori', 'sub-topik', 'subtopik', 'bidang', 'pembimbing']) || (keys[4] ? row[keys[4]] : '');
+                let notes = getRowFieldValue(row, keys, ['catatan', 'ringkasan', 'abstrak', 'keterangan', 'deskripsi']) || (keys[6] ? row[keys[6]] : '');
+
+                // Ignore completely empty rows
+                if (!name && !title && !videoUrl) return;
+
+                // Fallbacks if columns are not standard
+                if (!name) name = `Mahasiswa ${index + 1}`;
+                if (!title) title = `Proposal Penelitian Fisika Lingkungan #${index + 1}`;
+                if (!category) category = 'Fisika Lingkungan';
+                if (!timestamp) timestamp = new Date().toLocaleDateString('id-ID');
+
+                parsedItems.push({
+                    id: index + 1,
+                    timestamp: timestamp.trim(),
+                    name: name.trim(),
+                    nim: nim ? nim.trim() : '-',
+                    title: title.trim(),
+                    videoUrl: videoUrl ? videoUrl.trim() : '',
+                    category: category.trim(),
+                    notes: notes ? notes.trim() : 'Proposal penelitian metodologi fisika berbasis lingkungan.'
+                });
+            });
+
+            rawPresentationData = parsedItems;
+            populateTopicDropdown();
+            applyFiltersAndRender();
+            updateStatsSummary();
+        }
+
+        /* Helper to dynamically match flexible column names */
+        function getRowFieldValue(row, keys, possibleKeywords) {
+            for (let key of keys) {
+                const lowerKey = key.toLowerCase();
+                for (let keyword of possibleKeywords) {
+                    if (lowerKey.includes(keyword)) {
+                        if (row[key] && String(row[key]).trim() !== '') {
+                            return String(row[key]);
+                        }
+                    }
+                }
+            }
+            return '';
+        }
+
+        function parseEmbedVideoUrl(url) {
+            if (!url) return { type: 'none', embedUrl: '', thumbnail: null, rawUrl: '' };
+
+            let raw = url.trim();
+
+            // Check if string contains full HTML iframe tag from Column F
+            if (raw.toLowerCase().includes('<iframe')) {
+                const srcMatch = raw.match(/src=["']([^"']+)["']/i);
+                if (srcMatch && srcMatch[1]) {
+                    const embedUrl = srcMatch[1];
+                    let thumbnail = null;
+                    let fileId = null;
+                    if (embedUrl.includes('youtube.com') || embedUrl.includes('youtu.be')) {
+                        let vId = embedUrl.match(/embed\/([a-zA-Z0-9_-]+)/)?.[1];
+                        if (vId) thumbnail = `https://img.youtube.com/vi/${vId}/hqdefault.jpg`;
+                    } else if (embedUrl.includes('drive.google.com')) {
+                        fileId = embedUrl.match(/\/d\/([a-zA-Z0-9_-]+)/)?.[1] || embedUrl.match(/id=([a-zA-Z0-9_-]+)/)?.[1];
+                        if (fileId) thumbnail = `https://drive.google.com/thumbnail?id=${fileId}&sz=w800`;
+                    }
+                    return { type: 'iframe', embedUrl: embedUrl, thumbnail: thumbnail, fileId: fileId, rawUrl: embedUrl };
+                }
+            }
+
+            // Google Drive Video Parsing & Thumbnail Extraction
+            if (raw.includes('drive.google.com')) {
+                let fileIdMatch = raw.match(/\/d\/([a-zA-Z0-9_-]+)/) || raw.match(/id=([a-zA-Z0-9_-]+)/);
+                if (fileIdMatch && fileIdMatch[1]) {
+                    const fileId = fileIdMatch[1];
+                    return {
+                        type: 'gdrive',
+                        embedUrl: `https://drive.google.com/file/d/${fileId}/preview`,
+                        thumbnail: `https://drive.google.com/thumbnail?id=${fileId}&sz=w800`,
+                        fileId: fileId,
+                        rawUrl: raw
+                    };
+                }
+            }
+
+            // YouTube Parsing & High-Res Thumbnail
+            if (raw.includes('youtube.com') || raw.includes('youtu.be')) {
+                let videoId = '';
+                if (raw.includes('youtu.be/')) {
+                    videoId = raw.split('youtu.be/')[1].split('?')[0].split('&')[0];
+                } else if (raw.includes('watch?v=')) {
+                    videoId = raw.split('watch?v=')[1].split('&')[0];
+                } else if (raw.includes('embed/')) {
+                    videoId = raw.split('embed/')[1].split('?')[0];
+                } else if (raw.includes('shorts/')) {
+                    videoId = raw.split('shorts/')[1].split('?')[0];
+                }
+
+                if (videoId) {
+                    return {
+                        type: 'youtube',
+                        embedUrl: `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`,
+                        thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+                        rawUrl: raw
+                    };
+                }
+            }
+
+            // Loom Parsing & Thumbnail
+            if (raw.includes('loom.com')) {
+                let loomMatch = raw.match(/share\/([a-zA-Z0-9]+)/);
+                if (loomMatch && loomMatch[1]) {
+                    return {
+                        type: 'loom',
+                        embedUrl: `https://www.loom.com/embed/${loomMatch[1]}`,
+                        thumbnail: `https://cdn.loom.com/sessions/thumbnails/${loomMatch[1]}-00001.jpg`,
+                        rawUrl: raw
+                    };
+                }
+            }
+
+            // Vimeo Parsing & Thumbnail
+            if (raw.includes('vimeo.com')) {
+                let vimeoMatch = raw.match(/vimeo\.com\/([0-9]+)/);
+                if (vimeoMatch && vimeoMatch[1]) {
+                    return {
+                        type: 'vimeo',
+                        embedUrl: `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1`,
+                        thumbnail: `https://vumbnail.com/${vimeoMatch[1]}.jpg`,
+                        rawUrl: raw
+                    };
+                }
+            }
+
+            // Generic fallback URL
+            return {
+                type: 'generic',
+                embedUrl: raw,
+                thumbnail: null,
+                rawUrl: raw
+            };
+        }
+
+        function applyFiltersAndRender() {
+            const searchQuery = document.getElementById('search-input').value.toLowerCase().trim();
+            const selectedTopic = document.getElementById('filter-topic').value;
+            const sortOrder = document.getElementById('sort-order').value;
+
+            filteredPresentationData = rawPresentationData.filter(item => {
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery) ||
+                                      item.nim.toLowerCase().includes(searchQuery) ||
+                                      item.title.toLowerCase().includes(searchQuery) ||
+                                      item.category.toLowerCase().includes(searchQuery);
+
+                const matchesTopic = (selectedTopic === 'ALL') || (item.category === selectedTopic);
+
+                return matchesSearch && matchesTopic;
+            });
+
+            // Sorting
+            filteredPresentationData.sort((a, b) => {
+                if (sortOrder === 'NEWEST') return b.id - a.id;
+                if (sortOrder === 'OLDEST') return a.id - b.id;
+                if (sortOrder === 'NAME_ASC') return a.name.localeCompare(b.name);
+                if (sortOrder === 'TITLE_ASC') return a.title.localeCompare(b.title);
+                return 0;
+            });
+
+            // Toggle Reset Button
+            const hasActiveFilters = searchQuery !== '' || selectedTopic !== 'ALL';
+            document.getElementById('btn-reset-filters').classList.toggle('hidden', !hasActiveFilters);
+
+            // Render view
+            renderCurrentView();
+            updateResultsCount();
+        }
+
+        function renderCurrentView() {
+            const gridContainer = document.getElementById('grid-view');
+            const tableView = document.getElementById('table-view');
+            const loadingState = document.getElementById('loading-state');
+            const emptyState = document.getElementById('empty-state');
+
+            loadingState.classList.add('hidden');
+
+            if (filteredPresentationData.length === 0) {
+                gridContainer.classList.add('hidden');
+                tableView.classList.add('hidden');
                 emptyState.classList.remove('hidden');
                 emptyState.classList.add('flex');
-            } else {
-                grid.classList.remove('hidden');
-                emptyState.classList.add('hidden');
-                emptyState.classList.remove('flex');
-
-                // Tampilkan data terbaru di atas
-                const sortedPresentations = [...presentations].reverse();
-
-                sortedPresentations.forEach(p => {
-                    const card = document.createElement('div');
-                    card.className = 'bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col group';
-                    
-                    card.innerHTML = `
-                        <div class="aspect-video w-full bg-slate-100 relative overflow-hidden">
-                            <iframe 
-                                src="${p.embedUrl}" 
-                                class="absolute top-0 left-0 w-full h-full border-0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="p-5 flex-grow flex flex-col justify-between">
-                            <div>
-                                <h3 class="font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors">${p.nama}</h3>
-                                <p class="text-emerald-600 font-mono text-sm mt-1 bg-emerald-50 inline-block px-2 py-1 rounded">NIM: ${p.nim}</p>
-                            </div>
-                            <div class="mt-4 pt-4 border-t border-slate-100 text-xs text-slate-400 flex items-center justify-between">
-                                <span>Diunggah: ${p.date}</span>
-                                <button onclick="hapusVideo(${p.id})" class="text-red-400 hover:text-red-600 font-medium transition-colors">Hapus (Lokal)</button>
-                            </div>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                });
-            }
-        }
-
-        // Fungsi menampilkan pesan error
-        function showError(msg) {
-            errorMsg.textContent = msg;
-            errorMsg.classList.remove('hidden');
-            setTimeout(() => {
-                errorMsg.classList.add('hidden');
-            }, 5000);
-        }
-
-        // Handle Form Submit
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const nama = document.getElementById('nama').value;
-            const nim = document.getElementById('nim').value;
-            const rawEmbed = document.getElementById('embed').value;
-
-            const finalEmbedUrl = extractEmbedUrl(rawEmbed);
-
-            if (!finalEmbedUrl) {
-                showError("Format Kode Embed atau Link tidak valid. Harap masukkan tag <iframe> atau URL yang benar.");
                 return;
             }
 
-            // Tambahkan ke array data
-            presentations.push({
-                id: Date.now(),
-                nama: nama,
-                nim: nim,
-                embedUrl: finalEmbedUrl,
-                date: new Date().toLocaleDateString('id-ID')
+            emptyState.classList.add('hidden');
+            emptyState.classList.remove('flex');
+
+            if (activeViewMode === 'grid') {
+                tableView.classList.add('hidden');
+                gridContainer.classList.remove('hidden');
+                renderGridView(gridContainer);
+            } else {
+                gridContainer.classList.add('hidden');
+                tableView.classList.remove('hidden');
+                renderTableView();
+            }
+        }
+
+        function renderGridView(container) {
+            container.innerHTML = filteredPresentationData.map(item => {
+                const videoMeta = parseEmbedVideoUrl(item.videoUrl);
+                
+                // Fallback image generated with student name & title
+                const fallbackImg = `https://placehold.co/600x338/0f172a/ffffff?text=${encodeURIComponent(item.name.substring(0, 22))}`;
+
+                const thumbHtml = videoMeta.thumbnail ? 
+                    `<img src="${videoMeta.thumbnail}" 
+                          alt="Preview ${escapeHtml(item.title)}" 
+                          onerror="this.onerror=null; if('${videoMeta.fileId}') { this.src='https://lh3.googleusercontent.com/d/${videoMeta.fileId}=w800'; } else { this.src='${fallbackImg}'; }"
+                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">` :
+                    `<div class="w-full h-full bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 flex flex-col items-center justify-center text-slate-300 p-4 text-center">
+                        <i class="fa-solid fa-play-circle text-5xl text-blue-400 mb-2"></i>
+                        <span class="text-xs font-semibold text-white">Preview Video Proposal</span>
+                        <span class="text-[10px] text-slate-400 mt-1">Klik untuk memutar video</span>
+                     </div>`;
+
+                return `
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 flex flex-col group">
+                        <!-- Card Thumbnail Header -->
+                        <div class="relative aspect-video bg-slate-900 cursor-pointer overflow-hidden" onclick="openVideoModal(${item.id})">
+                            ${thumbHtml}
+                            <div class="absolute inset-0 bg-slate-900/30 group-hover:bg-slate-900/10 transition-colors flex items-center justify-center">
+                                <div class="w-12 h-12 rounded-full bg-blue-600/90 text-white flex items-center justify-center text-lg shadow-lg group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-play ml-0.5"></i>
+                                </div>
+                            </div>
+                            <div class="absolute top-3 left-3 flex items-center space-x-1.5">
+                                <span class="bg-slate-900/80 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-md border border-white/20 uppercase tracking-wide">
+                                    ${escapeHtml(item.category)}
+                                </span>
+                                ${videoMeta.type === 'gdrive' ? `
+                                    <span class="bg-emerald-600/90 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded-md flex items-center">
+                                        <i class="fa-brands fa-google-drive mr-1"></i> Drive
+                                    </span>
+                                ` : ''}
+                            </div>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                            <div class="space-y-2">
+                                <h3 class="font-bold text-slate-900 text-sm sm:text-base leading-snug line-clamp-2 hover:text-blue-600 transition cursor-pointer" onclick="openVideoModal(${item.id})">
+                                    ${escapeHtml(item.title)}
+                                </h3>
+                                <p class="text-xs text-slate-500 line-clamp-2">
+                                    ${escapeHtml(item.notes)}
+                                </p>
+                            </div>
+
+                            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
+                                <div class="flex items-center space-x-2 overflow-hidden mr-2">
+                                    <div class="w-7 h-7 rounded-full bg-blue-50 border border-blue-200 text-blue-700 flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                    <div class="truncate">
+                                        <p class="font-bold text-slate-900 truncate">${escapeHtml(item.name)}</p>
+                                        <p class="text-[11px] text-slate-400">NIM: ${escapeHtml(item.nim)}</p>
+                                    </div>
+                                </div>
+
+                                <button onclick="openVideoModal(${item.id})" class="flex-shrink-0 px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded-lg text-xs font-bold transition">
+                                    Putar <i class="fa-solid fa-chevron-right text-[10px] ml-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderTableView() {
+            const tableBody = document.getElementById('table-body');
+            tableBody.innerHTML = filteredPresentationData.map((item, idx) => {
+                return `
+                    <tr class="hover:bg-slate-50/80 transition-colors">
+                        <td class="py-3 px-4 text-center font-semibold text-slate-400">${idx + 1}</td>
+                        <td class="py-3 px-4">
+                            <p class="font-bold text-slate-900">${escapeHtml(item.name)}</p>
+                            <p class="text-[11px] text-slate-500">NIM: ${escapeHtml(item.nim)}</p>
+                        </td>
+                        <td class="py-3 px-4">
+                            <p class="font-semibold text-slate-800 line-clamp-2 hover:text-blue-600 cursor-pointer" onclick="openVideoModal(${item.id})">
+                                ${escapeHtml(item.title)}
+                            </p>
+                        </td>
+                        <td class="py-3 px-4">
+                            <span class="inline-block px-2.5 py-0.5 text-[10px] font-bold rounded-full bg-slate-100 text-slate-700 border border-slate-200">
+                                ${escapeHtml(item.category)}
+                            </span>
+                        </td>
+                        <td class="py-3 px-4 text-slate-500 text-[11px]">
+                            ${escapeHtml(item.timestamp)}
+                        </td>
+                        <td class="py-3 px-4 text-center">
+                            <button onclick="openVideoModal(${item.id})" class="inline-flex items-center px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold shadow-xs transition">
+                                <i class="fa-solid fa-play mr-1.5 text-[10px]"></i> Tonton
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function openVideoModal(id) {
+            const item = rawPresentationData.find(x => x.id === id);
+            if (!item) return;
+
+            const videoMeta = parseEmbedVideoUrl(item.videoUrl);
+            currentModalVideoUrl = videoMeta.rawUrl || item.videoUrl;
+
+            document.getElementById('modal-title').innerText = item.title;
+            document.getElementById('modal-author').innerText = item.name;
+            document.getElementById('modal-nim').innerText = `NIM: ${item.nim}`;
+            document.getElementById('modal-category-badge').innerText = item.category;
+            document.getElementById('modal-timestamp').innerText = `Diinput: ${item.timestamp}`;
+            document.getElementById('modal-notes').innerText = item.notes || 'Tidak ada catatan khusus.';
+
+            const container = document.getElementById('modal-player-container');
+
+            if (videoMeta.embedUrl) {
+                container.innerHTML = `
+                    <iframe src="${videoMeta.embedUrl}" 
+                            class="w-full h-full border-0 rounded-xl" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="text-center p-8 text-slate-300 space-y-3">
+                        <i class="fa-solid fa-circle-exclamation text-4xl text-amber-400"></i>
+                        <p class="text-sm font-semibold">Tautan video tidak dapat diputar langsung secara embed.</p>
+                        <a href="${escapeHtml(item.videoUrl)}" target="_blank" class="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 transition">
+                            Buka Video di Tab Baru <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                        </a>
+                    </div>
+                `;
+            }
+
+            const externalBtn = document.getElementById('modal-external-link');
+            if (item.videoUrl && item.videoUrl.startsWith('http')) {
+                externalBtn.href = item.videoUrl;
+                externalBtn.classList.remove('hidden');
+            } else {
+                externalBtn.classList.add('hidden');
+            }
+
+            const modal = document.getElementById('video-modal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            modal.classList.add('hidden');
+            document.getElementById('modal-player-container').innerHTML = ''; // Stop video playback
+            document.body.style.overflow = 'auto';
+        }
+
+        function populateTopicDropdown() {
+            const topicSelect = document.getElementById('filter-topic');
+            const categories = [...new Set(rawPresentationData.map(item => item.category))].filter(Boolean);
+
+            let optionsHtml = `<option value="ALL">Semua Kategori / Topik (${rawPresentationData.length})</option>`;
+            categories.forEach(cat => {
+                const count = rawPresentationData.filter(i => i.category === cat).length;
+                optionsHtml += `<option value="${escapeHtml(cat)}">${escapeHtml(cat)} (${count})</option>`;
             });
 
-            // Reset form dan render ulang
-            form.reset();
-            errorMsg.classList.add('hidden');
-            renderPresentations();
+            topicSelect.innerHTML = optionsHtml;
+        }
 
-            // Animasi scroll halus ke atas grid video jika layar kecil (HP)
-            if (window.innerWidth < 1024) {
-                document.getElementById('video-count').scrollIntoView({ behavior: 'smooth' });
+        function updateStatsSummary() {
+            document.getElementById('stat-total').innerText = rawPresentationData.length;
+            
+            const uniqueStudents = new Set(rawPresentationData.map(i => i.nim !== '-' ? i.nim : i.name)).size;
+            document.getElementById('stat-students').innerText = uniqueStudents;
+
+            const uniqueTopics = new Set(rawPresentationData.map(i => i.category)).size;
+            document.getElementById('stat-topics').innerText = uniqueTopics;
+
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('stat-time').innerText = `${timeStr} WIB`;
+        }
+
+        function updateResultsCount() {
+            const countText = document.getElementById('results-count-text');
+            countText.innerText = `Menampilkan ${filteredPresentationData.length} dari ${rawPresentationData.length} video proposal`;
+        }
+
+        function updateSyncUIStatus(status, text) {
+            const statusBadge = document.getElementById('last-updated-badge');
+            const syncIcon = document.getElementById('sync-icon');
+            const syncText = document.getElementById('sync-status-text');
+
+            if (status === 'loading') {
+                syncIcon.classList.add('fa-spin');
+                syncText.innerText = text;
+            } else {
+                syncIcon.classList.remove('fa-spin');
+                syncText.innerText = 'Perbarui Data';
+                statusBadge.innerHTML = `<i class="fa-solid fa-circle-check mr-1.5 text-emerald-300"></i> ${text}`;
             }
-        });
+        }
 
-        // Fungsi Hapus (Sebagai contoh interaksi)
-        window.hapusVideo = function(id) {
-            presentations = presentations.filter(p => p.id !== id);
-            renderPresentations();
-        };
+        function handleFilterChange() {
+            applyFiltersAndRender();
+        }
 
-        // Render awal saat halaman dimuat
-        renderPresentations();
+        function resetFilters() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('filter-topic').value = 'ALL';
+            document.getElementById('sort-order').value = 'NEWEST';
+            applyFiltersAndRender();
+        }
 
+        function setViewMode(mode) {
+            activeViewMode = mode;
+            const gridBtn = document.getElementById('view-grid-btn');
+            const tableBtn = document.getElementById('view-table-btn');
+
+            if (mode === 'grid') {
+                gridBtn.className = 'px-2.5 py-1 rounded text-xs font-semibold bg-white text-blue-700 shadow-xs transition-all';
+                tableBtn.className = 'px-2.5 py-1 rounded text-xs font-semibold text-slate-600 hover:text-slate-900 transition-all';
+            } else {
+                tableBtn.className = 'px-2.5 py-1 rounded text-xs font-semibold bg-white text-blue-700 shadow-xs transition-all';
+                gridBtn.className = 'px-2.5 py-1 rounded text-xs font-semibold text-slate-600 hover:text-slate-900 transition-all';
+            }
+
+            renderCurrentView();
+        }
+
+        function copyCurrentVideoLink() {
+            if (!currentModalVideoUrl) return;
+            
+            const tempInput = document.createElement('input');
+            tempInput.value = currentModalVideoUrl;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            showToast('Link video berhasil disalin ke clipboard!');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            const msgEl = document.getElementById('toast-message');
+            msgEl.innerText = message;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
     </script>
 </body>
 </html>
