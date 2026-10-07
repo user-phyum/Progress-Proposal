@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Presentasi - Fisika Lingkungan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        /* Custom scrollbar untuk tampilan yang lebih bersih */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Header Section -->
+    <header class="bg-emerald-800 text-white shadow-lg border-b-4 border-emerald-500 sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-center md:text-left leading-snug">
+                Kemajuan Penyusunan Proposal Penelitian <br class="hidden md:block" />
+                <span class="text-emerald-300 md:text-2xl text-xl font-medium">Metodologi Penelitian Fisika Berbasis Lingkungan</span>
+            </h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Kolom Kiri: Form Input -->
+            <div class="w-full lg:w-1/3">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sticky top-32">
+                    <div class="mb-6">
+                        <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Kirim Presentasi
+                        </h2>
+                        <p class="text-sm text-slate-500 mt-1">Masukkan data diri dan kode embed video presentasi Anda.</p>
+                    </div>
+
+                    <form id="presentation-form" class="space-y-4">
+                        <div>
+                            <label for="nama" class="block text-sm font-medium text-slate-700 mb-1">Nama Lengkap</label>
+                            <input type="text" id="nama" required placeholder="Contoh: Budi Santoso" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all duration-200">
+                        </div>
+
+                        <div>
+                            <label for="nim" class="block text-sm font-medium text-slate-700 mb-1">NIM</label>
+                            <input type="text" id="nim" required placeholder="Contoh: 20501234001" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all duration-200">
+                        </div>
+
+                        <div>
+                            <label for="embed" class="block text-sm font-medium text-slate-700 mb-1">Kode Embed Video</label>
+                            <textarea id="embed" required rows="3" placeholder='<iframe src="..."></iframe> atau link YouTube' class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all duration-200 text-sm font-mono"></textarea>
+                            <p class="text-xs text-slate-500 mt-1">Bisa berupa tag HTML &lt;iframe&gt; atau link langsung YouTube.</p>
+                        </div>
+
+                        <!-- Pesan Error Custom -->
+                        <div id="error-msg" class="hidden bg-red-50 text-red-600 text-sm p-3 rounded-lg border border-red-200"></div>
+
+                        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-4 rounded-lg transition-colors duration-200 flex justify-center items-center gap-2 mt-4 shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            Simpan Presentasi
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Kolom Kanan: Grid Video -->
+            <div class="w-full lg:w-2/3">
+                <div class="mb-4 flex justify-between items-center">
+                    <h2 class="text-xl font-bold text-slate-800">Daftar Video Proposal</h2>
+                    <span id="video-count" class="bg-emerald-100 text-emerald-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">0 Video</span>
+                </div>
+                
+                <div id="video-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Video cards akan di-render di sini oleh JavaScript -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="empty-state" class="hidden flex flex-col items-center justify-center p-12 bg-white rounded-2xl border border-dashed border-slate-300 text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-slate-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    <h3 class="text-lg font-medium text-slate-900 mb-1">Belum ada presentasi</h3>
+                    <p class="text-slate-500">Jadilah yang pertama mengunggah video presentasi proposal penelitian Anda!</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-6 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+            &copy; 2026 Portal Metodologi Penelitian Fisika. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Data in-memory (sementara hanya tersimpan selama halaman tidak direfresh)
+        // Diberikan contoh 1 data awal agar tidak kosong
+        let presentations = [
+            {
+                id: Date.now(),
+                nama: "Mahasiswa Contoh",
+                nim: "20501110001",
+                embedUrl: "https://www.youtube.com/embed/1la4h0cA69Q", // Video contoh placeholder
+                date: new Date().toLocaleDateString('id-ID')
+            }
+        ];
+
+        const form = document.getElementById('presentation-form');
+        const grid = document.getElementById('video-grid');
+        const emptyState = document.getElementById('empty-state');
+        const countBadge = document.getElementById('video-count');
+        const errorMsg = document.getElementById('error-msg');
+
+        // Fungsi untuk mengambil/memparsing URL src dari input embed
+        function extractEmbedUrl(input) {
+            input = input.trim();
+            
+            // 1. Cek apakah input mengandung tag <iframe>
+            const iframeRegex = /src=["'](.*?)["']/;
+            const match = input.match(iframeRegex);
+            if (match && match[1]) {
+                return match[1];
+            }
+
+            // 2. Jika bukan iframe, cek apakah ini link standar YouTube
+            if (input.includes('youtube.com/watch?v=')) {
+                try {
+                    const url = new URL(input);
+                    const videoId = url.searchParams.get('v');
+                    if (videoId) return `https://www.youtube.com/embed/${videoId}`;
+                } catch (e) { console.error(e); }
+            }
+            
+            if (input.includes('youtu.be/')) {
+                const videoId = input.split('youtu.be/')[1].split('?')[0];
+                if (videoId) return `https://www.youtube.com/embed/${videoId}`;
+            }
+
+            // 3. Jika sudah berupa link embed langsung atau Google Drive
+            if (input.startsWith('http')) {
+                // Untuk Google Drive, pastikan linknya berupa /preview
+                if (input.includes('drive.google.com/file/d/')) {
+                    return input.replace('/view', '/preview').replace('?usp=sharing', '/preview');
+                }
+                return input;
+            }
+
+            return null;
+        }
+
+        // Fungsi untuk me-render daftar video ke HTML
+        function renderPresentations() {
+            grid.innerHTML = '';
+            
+            countBadge.textContent = `${presentations.length} Video`;
+
+            if (presentations.length === 0) {
+                grid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                emptyState.classList.add('flex');
+            } else {
+                grid.classList.remove('hidden');
+                emptyState.classList.add('hidden');
+                emptyState.classList.remove('flex');
+
+                // Tampilkan data terbaru di atas
+                const sortedPresentations = [...presentations].reverse();
+
+                sortedPresentations.forEach(p => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col group';
+                    
+                    card.innerHTML = `
+                        <div class="aspect-video w-full bg-slate-100 relative overflow-hidden">
+                            <iframe 
+                                src="${p.embedUrl}" 
+                                class="absolute top-0 left-0 w-full h-full border-0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors">${p.nama}</h3>
+                                <p class="text-emerald-600 font-mono text-sm mt-1 bg-emerald-50 inline-block px-2 py-1 rounded">NIM: ${p.nim}</p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-slate-100 text-xs text-slate-400 flex items-center justify-between">
+                                <span>Diunggah: ${p.date}</span>
+                                <button onclick="hapusVideo(${p.id})" class="text-red-400 hover:text-red-600 font-medium transition-colors">Hapus (Lokal)</button>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+        }
+
+        // Fungsi menampilkan pesan error
+        function showError(msg) {
+            errorMsg.textContent = msg;
+            errorMsg.classList.remove('hidden');
+            setTimeout(() => {
+                errorMsg.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Handle Form Submit
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nama = document.getElementById('nama').value;
+            const nim = document.getElementById('nim').value;
+            const rawEmbed = document.getElementById('embed').value;
+
+            const finalEmbedUrl = extractEmbedUrl(rawEmbed);
+
+            if (!finalEmbedUrl) {
+                showError("Format Kode Embed atau Link tidak valid. Harap masukkan tag <iframe> atau URL yang benar.");
+                return;
+            }
+
+            // Tambahkan ke array data
+            presentations.push({
+                id: Date.now(),
+                nama: nama,
+                nim: nim,
+                embedUrl: finalEmbedUrl,
+                date: new Date().toLocaleDateString('id-ID')
+            });
+
+            // Reset form dan render ulang
+            form.reset();
+            errorMsg.classList.add('hidden');
+            renderPresentations();
+
+            // Animasi scroll halus ke atas grid video jika layar kecil (HP)
+            if (window.innerWidth < 1024) {
+                document.getElementById('video-count').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // Fungsi Hapus (Sebagai contoh interaksi)
+        window.hapusVideo = function(id) {
+            presentations = presentations.filter(p => p.id !== id);
+            renderPresentations();
+        };
+
+        // Render awal saat halaman dimuat
+        renderPresentations();
+
+    </script>
+</body>
+</html>
